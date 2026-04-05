@@ -1,0 +1,26 @@
+{
+  "name": "atividade5end",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/GabrielGeorgetti/atividade5end#readme",
+  "bugs": {
+    "url": "https://github.com/GabrielGeorgetti/atividade5end/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielGeorgetti/atividade5end.git"
+  },
+  "license": "ISC",
+  "author": "Gabriel",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-session": "^1.17.3",
+    "cookie-parser": "^1.4.6"
+  }
+}
