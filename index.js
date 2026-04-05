@@ -13,7 +13,7 @@ app.use(session({
     secret: 'segredo123',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 30 } // 30 minutos
+    cookie: { maxAge: 1000 * 60 * 30 } 
 }));
 
 var listaLivros = [];
@@ -46,12 +46,10 @@ const navLogado = () => `
     </ul>
 `;
 
-// Rota raiz redireciona para cadastro
 app.get('/', (req, res) => {
     res.redirect('/cadastro');
 });
 
-// GET Cadastro
 app.get('/cadastro', (req, res) => {
     res.write(cabecalho('Cadastro de Usuário'));
     res.write(`
@@ -86,7 +84,6 @@ app.get('/cadastro', (req, res) => {
     res.end();
 });
 
-// POST Cadastro
 app.post('/cadastro', (req, res) => {
     const { nome, usuario, senha, confirmarSenha } = req.body;
     
@@ -123,7 +120,6 @@ app.post('/cadastro', (req, res) => {
     res.end();
 });
 
-// GET Login
 app.get('/login', (req, res) => {
     res.write(cabecalho('Login'));
     res.write(`
@@ -149,7 +145,7 @@ app.get('/login', (req, res) => {
     res.write(rodape());
     res.end();
 });
-// POST Login
+
 app.post('/login', (req, res) => {
     const { usuario, senha } = req.body;
 
@@ -178,7 +174,6 @@ app.post('/login', (req, res) => {
     res.end();
 });
 
-// Logout
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.write(cabecalho('Logout'));
@@ -190,7 +185,6 @@ app.get('/logout', (req, res) => {
     res.end();
 });
 
-// Menu (protegido)
 app.get('/menu', (req, res) => {
     res.write(cabecalho('Menu Principal'));
 
@@ -232,7 +226,6 @@ app.get('/menu', (req, res) => {
     res.end();
 });
 
-// GET Livros (protegido)
 app.get('/livros', (req, res) => {
     res.write(cabecalho('Cadastro de Livros'));
 
@@ -298,7 +291,6 @@ app.get('/livros', (req, res) => {
     res.end();
 });
 
-// POST Livros
 app.post('/livros', (req, res) => {
     if (!req.session.usuario) {
         res.redirect('/login');
@@ -356,7 +348,6 @@ app.post('/livros', (req, res) => {
     res.end();
 });
 
-// GET Leitores (protegido)
 app.get('/leitores', (req, res) => {
     res.write(cabecalho('Cadastro de Leitores'));
 
@@ -372,7 +363,6 @@ app.get('/leitores', (req, res) => {
 
     res.write(navLogado());
 
-    // Monta as opções do select com os livros cadastrados (renderizado no servidor)
     let opcoesLivros = `<option value="">-- Selecione um livro --</option>`;
     listaLivros.forEach(l => {
         opcoesLivros += `<option value="${l.titulo}">${l.titulo} (${l.isbn})</option>`;
@@ -448,7 +438,6 @@ app.get('/leitores', (req, res) => {
     res.end();
 });
 
-// POST Leitores
 app.post('/leitores', (req, res) => {
     if (!req.session.usuario) {
         res.redirect('/login');
